@@ -24,7 +24,7 @@ export class MusicPlayer extends Component {
       isPlaying: false,
     };
     this.onReady = this.onReady.bind(this);
-    this.handleControl = this.handleControl.bind(this);
+    this.handleVideoControl = this.handleVideoControl.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -43,41 +43,51 @@ export class MusicPlayer extends Component {
     });
   }
 
-  handleControl() {
+  handleVideoControl() {
     let currentValue = this.state.isPlaying;
     this.setState({
       isPlaying: !currentValue
     });
+    if (currentValue) {
+      this.state.player.pauseVideo();
+    } else {
+      this.state.player.playVideo();
+    }
   }
 
-  findRelated() {
+
+  playMusic(relatedRecommendation = false) {
     let self = this;
-    config.relatedToVideoId = this.state.id;
+    if (!relatedRecommendation)
+      config.q = this.state.query;
+    else
+      config.relatedToVideoId = this.state.id;
     axios({
       url: youtubeURL,
       method: 'get',
       params: config
     })
-    .then(function (response) {
-      if (!response.data || !response.data.items || response.data.items.length === 0) {
-        console.log("no results while searching for: '" + config.q + "'.");
-      } else {
-        self.setPlayerTitle(response.data.items[0].snippet.title, response.data.items[0].id.videoId);
-      }
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+      .then(function (response) {
+        if (!response.data || !response.data.items || response.data.items.length === 0) {
+          console.log("No Results found");
+        } else {
+          self.setState({
+            title: response.data.items[0].snippet.title,
+            videoId: response.data.items[0].id.videoId
+          });
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   setPlayerTitle(title, videoId) {
-    let downloadLink = `http://youtubeinmp3.com/fetch/?video=http://www.youtube.com/watch?v=${videoId}`;
-    let downloadButton = <a href={downloadLink} className='download-link icon-arrow-down'>Download</a>;
-    this.setState({
-      title: downloadButton + title
-    });
+
   }
   render() {
+    let downloadLink = `http://youtubeinmp3.com/fetch/?video=http://www.youtube.com/watch?v=${this.state.videoId}`;
+    let downloadButton = <a href={downloadLink} className='download-link icon-arrow-down'>Download</a>;
     return (
       <div className="player">
         <a className={this.state.isPlaying ? 'btn icon-pause' : 'btn icon-play'} onClick={this.handleVideoControl} ></a>
@@ -93,7 +103,7 @@ export class MusicPlayer extends Component {
           opts={opts}
           onReady={this.onReady}
           className="youtube-player"
-        />
+          />
       </div>
     );
   }
