@@ -17,6 +17,7 @@ export class SearchBox extends Component {
     this.setState({
       inputValue: event.target.value
     });
+    this.props.onChange(event.target.value);
   }
   render() {
     return (
