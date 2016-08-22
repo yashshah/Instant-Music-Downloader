@@ -16,7 +16,7 @@ export class MusicPlayer extends Component {
     super(props);
     this.state = {
       videoId: null,
-      query: "Ik Kudi",
+      query: this.props.query,
       title: "Title will go here...",
       currentTime: '00: 00',
       duration: '00: 00',
@@ -27,24 +27,14 @@ export class MusicPlayer extends Component {
     this.handleControl = this.handleControl.bind(this);
   }
 
-  componentDidMount() {
+  componentWillReceiveProps(nextProps) {
     let self = this;
-    config.q = this.state.query;
-    axios({
-      url: youtubeURL,
-      method: 'get',
-      params: config
-    })
-    .then(function (response) {
-      if (!response.data || !response.data.items || response.data.items.length === 0) {
-        console.log("no results while searching for: '" + config.q + "'.");
-      } else {
-        self.setPlayerTitle(response.data.items[0].snippet.title, response.data.items[0].id.videoId);
-      }
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+    if (nextProps.query !== this.state.query)
+      this.setState({
+        query: nextProps.query
+      }, function () {
+        self.playMusic();
+      });
   }
 
   onReady(event) {
