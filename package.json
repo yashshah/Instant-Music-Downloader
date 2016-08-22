@@ -1,0 +1,38 @@
+{
+  "name": "Instant-Music-Downloader",
+  "version": "0.0.1",
+  "description": "Minimalistic website to play any song and download mp3 with one click!",
+  "main": "''",
+  "scripts": {
+    "build": "webpack --config webpack.production.config.js --progress --profile --colors",
+    "start": "webpack-dev-server --progress --profile --colors",
+    "lint": "eslint --ext js --ext jsx src || exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yashshah/Instant-Music-Downloader"
+  },
+  "author": "Yash Shah",
+  "license": "MIT",
+  "homepage": "https://github.com/yashshah/Instant-Music-Downloader",
+  "dependencies": {
+    "react": "15.3.0",
+    "react-dom": "15.3.0"
+  },
+  "devDependencies": {
+    "babel-core": "6.13.2",
+    "babel-loader": "6.2.4",
+    "babel-preset-es2015": "6.13.2",
+    "babel-preset-react": "6.11.1",
+    "css-loader": "0.23.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "0.9.0",
+    "html-webpack-plugin": "^2.22.0",
+    "react-hot-loader": "1.3.0",
+    "style-loader": "0.13.1",
+    "url-loader": "0.5.7",
+    "webpack": "1.13.1",
+    "webpack-cleanup-plugin": "^0.2.0",
+    "webpack-dev-server": "1.14.1"
+  }
+}
