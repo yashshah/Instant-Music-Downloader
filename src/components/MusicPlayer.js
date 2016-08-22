@@ -13,7 +13,9 @@ export class MusicPlayer extends Component {
       title: "Title will go here...",
       currentTime: '00: 00',
       duration: '00: 00',
+      isPlaying: false,
     };
+    this.handleControl = this.handleControl.bind(this);
   }
 
   componentDidMount() {
@@ -37,6 +39,12 @@ export class MusicPlayer extends Component {
   }
 
   findRelated(){
+  handleControl() {
+    let currentValue = this.state.isPlaying;
+    this.setState({
+      isPlaying: !currentValue
+    });
+  }
     let self = this;
     config.relatedToVideoId = this.state.id;
     axios({
@@ -66,8 +74,7 @@ export class MusicPlayer extends Component {
   render() {
     return (
       <div className="player">
-        <a className="btn icon-play"></a>
-        <a className="btn icon-pause"></a>
+        <a className={this.state.isPlaying ? 'btn icon-play' : 'btn icon-pause'} onClick={this.handleControl} ></a>
         <div className="player-title">{this.state.title}</div>
         <div id="progress">
           <div className="progress-bar"></div>
