@@ -10,14 +10,13 @@ export class SearchBox extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
   }
   handleSubmit(event) {
-    console.log("Inside the Submit");
     event.preventDefault();
+    this.props.onChange(this.state.inputValue);    
   }
   handleInputChange(event) {
     this.setState({
       inputValue: event.target.value
     });
-    this.props.onChange(event.target.value);
   }
   render() {
     return (
