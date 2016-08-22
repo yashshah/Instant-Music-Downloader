@@ -37,6 +37,25 @@ export class MusicPlayer extends Component {
     });
   }
 
+  findRelated(){
+    let self = this;
+    config.relatedToVideoId = this.state.id;
+    axios({
+      url: youtubeURL,
+      method: 'get',
+      params: config
+    })
+    .then(function (response) {
+      if (!response.data || !response.data.items || response.data.items.length === 0) {
+        console.log("no results while searching for: '" + config.q + "'.");
+      } else {
+        self.setPlayerTitle(response.data.items[0].snippet.title, response.data.items[0].id.videoId);
+      }
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
 
   setPlayerTitle(title, videoId) {
     let downloadLink = `http://youtubeinmp3.com/fetch/?video=http://www.youtube.com/watch?v=${videoId}`;
