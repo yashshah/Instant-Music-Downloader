@@ -4,7 +4,13 @@ import config from '../config.js';
 import YouTube from 'react-youtube';
 
 let youtubeURL = 'https://www.googleapis.com/youtube/v3/search';
-
+const opts = {
+  height: '0',
+  width: '0',
+  playerVars: {
+    autoplay: 1
+  }
+};
 export class MusicPlayer extends Component {
   constructor(props) {
     super(props);
@@ -92,7 +98,12 @@ export class MusicPlayer extends Component {
         <div className="time">
           <span>{this.state.currentTime}</span>/<span>{this.state.duration}</span>
         </div>
-        <YouTube videoId={this.state.videoId} onReady={this.onReady} className="youtube-player" />
+        <YouTube
+          videoId={this.state.videoId}
+          opts={opts}
+          onReady={this.onReady}
+          className="youtube-player"
+        />
       </div>
     );
   }
