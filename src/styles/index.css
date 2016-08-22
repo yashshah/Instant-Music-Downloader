@@ -1,10 +1,38 @@
+/*Mobile*/
+@media only screen and (min-width: 240px){
+  .background{
+    background: url('https://source.unsplash.com/category/nature/640x480') center center / cover no-repeat fixed;
+  }
+}
+
+/*Tablet*/
+@media only screen and (min-width: 768px){
+  .background{
+    background: url('https://source.unsplash.com/category/nature/1280x720') center center / cover no-repeat fixed;
+  }
+} 
+
+/*Desktop*/
+@media only screen and (min-width: 992px){
+  .background{
+    background: url('https://source.unsplash.com/category/nature/1280x720') center center / cover no-repeat fixed;
+  }
+}
+
+/*Huge*/
+@media only screen and (min-width: 1280px){
+  .background{
+    background: url('https://source.unsplash.com/category/nature/1920x1200') center center / cover no-repeat fixed;
+  }
+}
+* {
+  box-sizing: border-box;
+}
 .background {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  background: url('https://source.unsplash.com/category/nature/1280x720') no-repeat center center fixed;
-  background-size: 100% 100%;
   opacity: 1;
 }
 
