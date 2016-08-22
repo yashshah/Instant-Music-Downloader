@@ -13,7 +13,6 @@ export class MusicPlayer extends Component {
       title: "Title will go here...",
       currentTime: '00: 00',
       duration: '00: 00',
-
     };
   }
 
@@ -66,15 +65,15 @@ export class MusicPlayer extends Component {
   }
   render() {
     return (
-      <div id="player">
-        <a id="play" className="btn icon-play"></a>
-        <a id="pause" className="btn icon-pause"></a>
-        <div id="player-title">{this.state.title}</div>
+      <div className="player">
+        <a className="btn icon-play"></a>
+        <a className="btn icon-pause"></a>
+        <div className="player-title">{this.state.title}</div>
         <div id="progress">
-          <div id="progress-bar"></div>
+          <div className="progress-bar"></div>
         </div>
-        <div id="time">
-          <span id="current-time">{this.state.currentTime}</span>/<span id="duration">{this.state.duration}</span>
+        <div className="time">
+          <span>{this.state.currentTime}</span>/<span>{this.state.duration}</span>
         </div>
       </div>
     );

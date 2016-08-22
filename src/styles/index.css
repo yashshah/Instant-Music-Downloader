@@ -87,11 +87,11 @@ body,
 
 /*Player CSS*/
 
-#player {
+.player {
     height: 60px;
     position: relative;
 }
-#player .btn {
+.player .btn {
     background-color: #8F11B3;
     border-radius: 50%;
     box-shadow: 0 1px 4px rgba(0,0,0,.3);
@@ -103,17 +103,17 @@ body,
     position: absolute;
     width: 60px;
 }
-#player .btn:hover {
+.player .btn:hover {
     background-color: #a714d1;
     transition: background-color 300ms;
     -moz-transition: background-color 300ms;
     -webkit-transition: background-color 300ms;
 }
-#player .btn:active {
+.player .btn:active {
     background-color: #9512ba;
     box-shadow: 0 1px 4px rgba(0,0,0,.3) inset, 0 1px 2px rgba(0,0,0,.3);
 }
-#player #player-title {
+.player .player-title {
     font-size: 10pt;
     left: 80px;
     overflow-x: hidden;
@@ -124,19 +124,19 @@ body,
     top: 10px;
     white-space: nowrap;
 }
-#player #player-title .download-link {
+.player .player-title .download-link {
     font-size: 14px;
     color: white;
     background-color: #27ae60;
     padding: 3px;
 }
-#player #time {
+.player .time {
     bottom: 10px;
     font-size: 8pt;
     position: absolute;
     right: 10px;
 }
-#player #progress {
+.player #progress {
     background-color: white;
     border-radius: 3px;
     box-shadow: 0 0 1px rgba(0,0,0,.8) inset;
@@ -146,7 +146,7 @@ body,
     right: 10px;
     top: 30px;
 }
-#player #progress #progress-bar {
+.player #progress .progress-bar {
     background-color: #8F11B3;
     border-radius: 3px;
     height: 5px;
