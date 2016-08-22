@@ -1,6 +1,7 @@
 import { default as React, Component } from 'react';
 import axios from 'axios';
 import config from '../config.js';
+import YouTube from 'react-youtube';
 
 let youtubeURL = 'https://www.googleapis.com/youtube/v3/search';
 
@@ -8,13 +9,15 @@ export class MusicPlayer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: null,
+      videoId: null,
       query: "Ik Kudi",
       title: "Title will go here...",
       currentTime: '00: 00',
       duration: '00: 00',
+      player: null,
       isPlaying: false,
     };
+    this.onReady = this.onReady.bind(this);
     this.handleControl = this.handleControl.bind(this);
   }
 
@@ -38,13 +41,20 @@ export class MusicPlayer extends Component {
     });
   }
 
-  findRelated(){
+  onReady(event) {
+    this.setState({
+      player: event.target,
+    });
+  }
+
   handleControl() {
     let currentValue = this.state.isPlaying;
     this.setState({
       isPlaying: !currentValue
     });
   }
+
+  findRelated() {
     let self = this;
     config.relatedToVideoId = this.state.id;
     axios({
@@ -82,6 +92,7 @@ export class MusicPlayer extends Component {
         <div className="time">
           <span>{this.state.currentTime}</span>/<span>{this.state.duration}</span>
         </div>
+        <YouTube videoId={this.state.videoId} onReady={this.onReady} className="youtube-player" />
       </div>
     );
   }

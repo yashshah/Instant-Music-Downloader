@@ -153,6 +153,9 @@ body,
     margin-left: -1px;
 }
 
+.youtube-player{
+  visibility: hidden;
+}
 
 /* Index.css */
 
