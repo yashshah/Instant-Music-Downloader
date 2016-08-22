@@ -80,9 +80,9 @@ export class MusicPlayer extends Component {
   render() {
     return (
       <div className="player">
-        <a className={this.state.isPlaying ? 'btn icon-play' : 'btn icon-pause'} onClick={this.handleControl} ></a>
-        <div className="player-title">{this.state.title}</div>
-        <div id="progress">
+        <a className={this.state.isPlaying ? 'btn icon-pause' : 'btn icon-play'} onClick={this.handleVideoControl} ></a>
+        <div className="player-title">{downloadButton}  {this.state.title}</div>
+        <div id="progress" onMouseUp={this.handleVideoSeek}>
           <div className="progress-bar"></div>
         </div>
         <div className="time">
