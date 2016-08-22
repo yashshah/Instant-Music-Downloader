@@ -83,3 +83,157 @@ body,
   height: 100%;
   overflow: hidden;
 }
+
+
+/*Player CSS*/
+
+#player {
+    height: 60px;
+    position: relative;
+}
+#player .btn {
+    background-color: #8F11B3;
+    border-radius: 50%;
+    box-shadow: 0 1px 4px rgba(0,0,0,.3);
+    color: white;
+    font-size: 25px;
+    height: 60px;
+    left: 10px;
+    line-height: 60px;
+    position: absolute;
+    width: 60px;
+}
+#player .btn:hover {
+    background-color: #a714d1;
+    transition: background-color 300ms;
+    -moz-transition: background-color 300ms;
+    -webkit-transition: background-color 300ms;
+}
+#player .btn:active {
+    background-color: #9512ba;
+    box-shadow: 0 1px 4px rgba(0,0,0,.3) inset, 0 1px 2px rgba(0,0,0,.3);
+}
+#player #player-title {
+    font-size: 10pt;
+    left: 80px;
+    overflow-x: hidden;
+    position: absolute;
+    right: 10px;
+    text-align: right;
+    text-overflow: ellipsis;
+    top: 10px;
+    white-space: nowrap;
+}
+#player #player-title .download-link {
+    font-size: 14px;
+    color: white;
+    background-color: #27ae60;
+    padding: 3px;
+}
+#player #time {
+    bottom: 10px;
+    font-size: 8pt;
+    position: absolute;
+    right: 10px;
+}
+#player #progress {
+    background-color: white;
+    border-radius: 3px;
+    box-shadow: 0 0 1px rgba(0,0,0,.8) inset;
+    cursor: pointer;
+    left: 80px;
+    position: absolute;
+    right: 10px;
+    top: 30px;
+}
+#player #progress #progress-bar {
+    background-color: #8F11B3;
+    border-radius: 3px;
+    height: 5px;
+    margin-left: -1px;
+}
+
+
+/* Index.css */
+
+body {
+    background-color: #333;
+    color: white;
+    font-family: Lato, tahoma, verdana, arial, sans-serif;
+    text-align: center;
+    text-shadow: 0 -1px rgba(0,0,0,.8);
+}
+a {
+    color: #aaa;
+    text-decoration: none;
+}
+a:hover {
+    color: white;
+    cursor: pointer;
+}
+
+.head {
+    background-color: #222;
+    padding: 40px 10px;
+}
+.content {
+    margin: 10px auto;
+    max-width: 500px;
+}
+
+#search-form {
+    margin-bottom: 20px;
+}
+#search-input {
+    color: black;
+}
+#search-label {
+    color: #aaa;
+    font-size: 10pt;
+}
+
+#examples-list {
+    list-style: none;
+    margin: 0;
+    padding: 10px;
+}
+#examples-list li {
+    padding: 5px 0;
+}
+
+/*Icon CSS*/
+@font-face {
+    font-family: 'icomoon';
+    src:url('./fonts/icomoon.eot?i6bygr');
+    src:url('./fonts/icomoon.eot?i6bygr#iefix') format('embedded-opentype'),
+        url('./fonts/icomoon.ttf?i6bygr') format('truetype'),
+        url('./fonts/icomoon.woff?i6bygr') format('woff'),
+        url('./fonts/icomoon.svg?i6bygr#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    font-family: 'icomoon';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-play:before {
+    content: "\e800";
+}
+.icon-pause:before {
+    content: "\e801";
+}
+.icon-arrow-down:before {
+    content: "\e802";
+}
+
