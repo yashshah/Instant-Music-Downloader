@@ -16,6 +16,7 @@
   "license": "MIT",
   "homepage": "https://github.com/yashshah/Instant-Music-Downloader",
   "dependencies": {
+    "axios": "^0.13.1",
     "materialize-css": "^0.97.7",
     "react": "15.3.0",
     "react-dom": "15.3.0"
