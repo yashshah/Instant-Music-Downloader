@@ -2,6 +2,7 @@ import { default as React, Component } from 'react';
 import axios from 'axios';
 import config from '../config.js';
 import YouTube from 'react-youtube';
+import moment from 'moment';
 
 let youtubeURL = 'https://www.googleapis.com/youtube/v3/search';
 const opts = {
@@ -84,6 +85,8 @@ export class MusicPlayer extends Component {
 
   setPlayerTitle(title, videoId) {
 
+  formatTime(timeInS) {
+    return moment.utc(timeInS * 1000).format('mm:ss');
   }
   render() {
     let downloadLink = `http://youtubeinmp3.com/fetch/?video=http://www.youtube.com/watch?v=${this.state.videoId}`;
