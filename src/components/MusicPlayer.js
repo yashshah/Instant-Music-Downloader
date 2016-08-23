@@ -89,8 +89,11 @@ export class MusicPlayer extends Component {
     return moment.utc(timeInS * 1000).format('mm:ss');
   }
   render() {
-    let downloadLink = `http://youtubeinmp3.com/fetch/?video=http://www.youtube.com/watch?v=${this.state.videoId}`;
-    let downloadButton = <a href={downloadLink} className='download-link icon-arrow-down'>Download</a>;
+    let downloadButton = '';
+    if (this.state.videoId) {
+      let downloadLink = `http://youtubeinmp3.com/fetch/?video=http://www.youtube.com/watch?v=${this.state.videoId}`;
+      downloadButton = <a href={downloadLink} className='download-link icon-arrow-down'>Download</a>;
+    }
     return (
       <div className="player">
         <a className={this.state.isPlaying ? 'btn icon-pause' : 'btn icon-play'} onClick={this.handleVideoControl} ></a>
