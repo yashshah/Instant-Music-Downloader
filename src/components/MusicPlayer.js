@@ -18,9 +18,9 @@ export class MusicPlayer extends Component {
     this.state = {
       videoId: null,
       query: this.props.query,
-      title: "Title will go here...",
-      currentTime: '00: 00',
-      duration: '00: 00',
+      title: "Buffering the video...",
+      currentTime: '--:--',
+      duration: '--:--',
       player: null,
       isPlaying: false,
     };
