@@ -26,16 +26,19 @@ export class MusicPlayer extends Component {
     };
     this.onReady = this.onReady.bind(this);
     this.handleVideoControl = this.handleVideoControl.bind(this);
+    this.handleVideoStatusChange = this.handleVideoStatusChange.bind(this);
+    this.updateTime = this.updateTime.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
     let self = this;
-    if (nextProps.query !== this.state.query)
+    if (nextProps.query !== this.state.query) {
       this.setState({
         query: nextProps.query
       }, function () {
         self.playMusic();
       });
+    }
   }
 
   onReady(event) {
@@ -51,8 +54,10 @@ export class MusicPlayer extends Component {
     });
     if (currentValue) {
       this.state.player.pauseVideo();
+      clearInterval(this.interval)
     } else {
       this.state.player.playVideo();
+      this.iterval = setInterval(this.updateTime, 1000);
     }
   }
 
@@ -74,7 +79,8 @@ export class MusicPlayer extends Component {
         } else {
           self.setState({
             title: response.data.items[0].snippet.title,
-            videoId: response.data.items[0].id.videoId
+            videoId: response.data.items[0].id.videoId,
+            isPlaying: true
           });
         }
       })
@@ -92,6 +98,9 @@ export class MusicPlayer extends Component {
       });
       self.iterval = setInterval(self.updateTime, 1000);
     }
+    else if (event.data === 0) {
+      this.playMusic(true);
+    }
   }
 
   updateTime() {
@@ -104,6 +113,7 @@ export class MusicPlayer extends Component {
   formatTime(timeInS) {
     return moment.utc(timeInS * 1000).format('mm:ss');
   }
+
   render() {
     let downloadButton = '';
     if (this.state.videoId) {
