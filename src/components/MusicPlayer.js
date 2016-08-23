@@ -64,14 +64,15 @@ export class MusicPlayer extends Component {
 
   playMusic(relatedRecommendation = false) {
     let self = this;
+    let params = Object.assign({}, config);
     if (!relatedRecommendation)
-      config.q = this.state.query;
+      params.q = this.state.query;
     else
-      config.relatedToVideoId = this.state.id;
+      params.relatedToVideoId = this.state.videoId;
     axios({
       url: youtubeURL,
       method: 'get',
-      params: config
+      params: params
     })
       .then(function (response) {
         if (!response.data || !response.data.items || response.data.items.length === 0) {
