@@ -83,7 +83,23 @@ export class MusicPlayer extends Component {
       });
   }
 
-  setPlayerTitle(title, videoId) {
+  handleVideoStatusChange(event) {
+    let self = this;
+    if (event.data === 1) {
+      let duration = this.state.player.getDuration();
+      this.setState({
+        duration: self.formatTime(duration)
+      });
+      self.iterval = setInterval(self.updateTime, 1000);
+    }
+  }
+
+  updateTime() {
+    let currentTime = this.formatTime(this.state.player.getCurrentTime());
+    this.setState({
+      currentTime: currentTime
+    });
+  }
 
   formatTime(timeInS) {
     return moment.utc(timeInS * 1000).format('mm:ss');
@@ -107,6 +123,7 @@ export class MusicPlayer extends Component {
         <YouTube
           videoId={this.state.videoId}
           opts={opts}
+          onStateChange={this.handleVideoStatusChange}
           onReady={this.onReady}
           className="youtube-player"
           />
