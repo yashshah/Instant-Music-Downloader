@@ -128,7 +128,7 @@ export class MusicPlayer extends Component {
     let downloadButton = '';
     if (this.state.videoId) {
       let downloadLink = `http://youtubeinmp3.com/fetch/?video=http://www.youtube.com/watch?v=${this.state.videoId}&autostart=1`;
-      downloadButton = <a href={downloadLink} className='download-link icon-arrow-down'>Download</a>;
+      downloadButton = <a href={downloadLink} className='download-link'>Download</a>;
     }
     let widthPercentage = `${this.state.progress}%`;
     let progressWidth = {
