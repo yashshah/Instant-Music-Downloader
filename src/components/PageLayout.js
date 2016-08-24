@@ -7,7 +7,7 @@ export class PageLayout extends Component {
     super(props);
     this.state = {
       query: null,
-    }
+    };
     this.handleChange = this.handleChange.bind(this);
   }
   handleChange(searchInput){

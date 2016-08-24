@@ -135,7 +135,7 @@ export class MusicPlayer extends Component {
       width: widthPercentage
     };
     return (
-      <div className="player">
+      <div className={this.state.query ? 'player' : 'player youtube-player' }>
         <a
           className={this.state.isPlaying ? 'btn icon-pause' : 'btn icon-play'}
           onClick={this.handleVideoControl}
