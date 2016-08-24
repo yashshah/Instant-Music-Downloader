@@ -26,6 +26,7 @@ export class MusicPlayer extends Component {
     };
     this.onReady = this.onReady.bind(this);
     this.handleVideoControl = this.handleVideoControl.bind(this);
+    this.handleVideoSeek = this.handleVideoSeek.bind(this);
     this.handleVideoStatusChange = this.handleVideoStatusChange.bind(this);
     this.updateTime = this.updateTime.bind(this);
   }
@@ -61,6 +62,10 @@ export class MusicPlayer extends Component {
     }
   }
 
+  handleVideoSeek(event) {
+    let percentage = (event.clientX - this.refs.progress.getBoundingClientRect().left) / this.refs.progress.offsetWidth;
+    this.state.player.seekTo(this.state.player.getDuration() * percentage);
+  }
 
   playMusic(relatedRecommendation = false) {
     let self = this;
@@ -125,8 +130,8 @@ export class MusicPlayer extends Component {
       <div className="player">
         <a className={this.state.isPlaying ? 'btn icon-pause' : 'btn icon-play'} onClick={this.handleVideoControl} ></a>
         <div className="player-title">{downloadButton}  {this.state.title}</div>
-        <div id="progress" onMouseUp={this.handleVideoSeek}>
           <div className="progress-bar"></div>
+        <div id="progress" onMouseUp={this.handleVideoSeek} ref="progress">
         </div>
         <div className="time">
           <span>{this.state.currentTime}</span>/<span>{this.state.duration}</span>
