@@ -23,6 +23,7 @@ export class MusicPlayer extends Component {
       duration: '--:--',
       player: null,
       isPlaying: false,
+      progress: 0,
     };
     this.onReady = this.onReady.bind(this);
     this.handleVideoControl = this.handleVideoControl.bind(this);
@@ -110,9 +111,12 @@ export class MusicPlayer extends Component {
   }
 
   updateTime() {
-    let currentTime = this.formatTime(this.state.player.getCurrentTime());
+    let self = this;
+    let currentTime = this.state.player.getCurrentTime();
+    let duration = this.state.player.getDuration();
     this.setState({
-      currentTime: currentTime
+      currentTime: self.formatTime(currentTime),
+      progress: (currentTime / duration) * 100,
     });
   }
 
@@ -126,12 +130,19 @@ export class MusicPlayer extends Component {
       let downloadLink = `http://youtubeinmp3.com/fetch/?video=http://www.youtube.com/watch?v=${this.state.videoId}`;
       downloadButton = <a href={downloadLink} className='download-link icon-arrow-down'>Download</a>;
     }
+    let widthPercentage = `${this.state.progress}%`;
+    let progressWidth = {
+      width: widthPercentage
+    };
     return (
       <div className="player">
-        <a className={this.state.isPlaying ? 'btn icon-pause' : 'btn icon-play'} onClick={this.handleVideoControl} ></a>
+        <a
+          className={this.state.isPlaying ? 'btn icon-pause' : 'btn icon-play'}
+          onClick={this.handleVideoControl}
+          />
         <div className="player-title">{downloadButton}  {this.state.title}</div>
-          <div className="progress-bar"></div>
         <div id="progress" onMouseUp={this.handleVideoSeek} ref="progress">
+          <div className="progress-bar" style={progressWidth} />
         </div>
         <div className="time">
           <span>{this.state.currentTime}</span>/<span>{this.state.duration}</span>
