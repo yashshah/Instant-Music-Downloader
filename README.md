@@ -1,7 +1,8 @@
 # Instant Music Downloader    
 
-Minimalistic website to play any song and download mp3 with one click!
+Minimalistic website to play any song and download mp3 with one click!    
 
+![alt tag](http://g.recordit.co/MMsIpk2xKC.gif)  
 
 ### To run
 
