@@ -68,4 +68,4 @@ To do the actual linting, run:
 
 ```
 > npm run lint
-```. 
+```      
